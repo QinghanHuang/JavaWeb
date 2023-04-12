@@ -2,19 +2,39 @@
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--配置文件是有顺序要求的-->
 <configuration>
+    <!-- 设置别名   需要在environments的上方 -->
+    <!--    <typeAliases>-->
+    <!--        <typeAlias type="part4_mybatis.load_xml.Account" alias="Account"/>-->
+    <!--    </typeAliases>-->
+
+<!--    可以扫描package,获得小写的别名 account-->
+<!--    配合lombok注解,可以在类内部起别名-->
+    <typeAliases>
+        <package name="part4_mybatis"/>
+    </typeAliases>
+
+
+    <!--    默认环境-->
     <environments default="development">
+        <!--        设置一个环境,id,可以并列增加多个环境-->
         <environment id="development">
+            <!--            事务处理器 默认jdbc-->
             <transactionManager type="JDBC"/>
+            <!--            默认池化数据管理-->
             <dataSource type="POOLED">
+                <!--                用户的属性-->
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="${url}"/>
-                <property name="username" value="${username}"/>
-                <property name="password" value="${password}"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/ex2"/>
+                <property name="username" value="root"/>
+                <property name="password" value="Hqh7263658"/>
             </dataSource>
         </environment>
     </environments>
-<!--    <mappers>-->
-<!--        <mapper resource="org/mybatis/example/BlogMapper.xml"/>-->
-<!--    </mappers>-->
+    <!--    在这里设置注册mapper-->
+    <mappers>
+        <mapper resource="part4_mybatis/load_xml/mapper/accountTest.xml"/>
+        <!--    这里用的是url，也可以使用其他类型，我们会在后面讲解    -->
+    </mappers>
 </configuration>

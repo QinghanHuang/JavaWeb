@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--使用namespace绑定接口-->
+<mapper namespace="part4_mybatis.load_xml.mapper.AccountMapper">
+    <select id="selectAllAccount" resultType="clementAccount">
+        select * from account
+    </select>
+    <select id="selectOneAccount" resultType="clementAccount">
+        select * from account where account=#{account}
+    </select>
+</mapper>
